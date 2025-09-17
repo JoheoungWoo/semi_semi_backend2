@@ -1,9 +1,6 @@
 package com.semi_semi_backend11.semisemi.dto;
 
-import jakarta.persistence.Id;
 import lombok.*;
-
-import java.time.LocalDate;
 
 
 @Builder
@@ -12,7 +9,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 
-public class BookDTO {
+public class BookDto {
 
     private String isbn;
     private String title;

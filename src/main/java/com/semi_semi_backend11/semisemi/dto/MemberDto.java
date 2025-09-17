@@ -2,7 +2,6 @@ package com.semi_semi_backend11.semisemi.dto;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -14,7 +13,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 
-public class MemberDTO {
+public class MemberDto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long member_id;
     private String name;

@@ -1,6 +1,6 @@
 package com.semi_semi_backend11.semisemi.service;
 
-import com.semi_semi_backend11.semisemi.dto.BookDTO;
+import com.semi_semi_backend11.semisemi.dto.BookDto;
 import com.semi_semi_backend11.semisemi.entity.Book;
 import com.semi_semi_backend11.semisemi.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
@@ -12,8 +12,8 @@ import java.util.List;
 public class BookServiceImpl implements BookService{
     private final BookRepository repository;
 
-    public BookDTO toDto(Book book){
-        return BookDTO.builder()
+    public BookDto toDto(Book book){
+        return BookDto.builder()
                     .isbn(book.getIsbn())
                     .title(book.getTitle())
                     .genre(book.getGenre())
@@ -24,7 +24,7 @@ public class BookServiceImpl implements BookService{
                     .publisher(book.getPublisher())
                     .build();
     }
-    public Book toEntity(BookDTO dto){
+    public Book toEntity(BookDto dto){
         return Book.builder()
                     .isbn(dto.getIsbn())
                     .title(dto.getTitle())
@@ -38,7 +38,7 @@ public class BookServiceImpl implements BookService{
     }
 
     @Override
-    public List<BookDTO> findAllBook() {
+    public List<BookDto> findAllBook() {
         return repository.findAll().stream().map(i->toDto(i)).toList();
     }
 }

@@ -1,6 +1,6 @@
 package com.semi_semi_backend11.semisemi.controller;
 
-import com.semi_semi_backend11.semisemi.dto.BookDTO;
+import com.semi_semi_backend11.semisemi.dto.BookDto;
 import com.semi_semi_backend11.semisemi.service.BookService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class BookController {
     private BookService service;
 
     @GetMapping("/list")
-    public List<BookDTO> bookDTOList(){
+    public List<BookDto> bookDTOList(){
         return service.findAllBook();
     }
 }
