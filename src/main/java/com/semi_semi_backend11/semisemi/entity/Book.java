@@ -1,14 +1,17 @@
+package com.semi_semi_backend11.semisemi.entity;
+
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Getter
 @Setter
 @Table(name = "BOOK")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Book {
-
-    @Id // 기본 키
+    @Id
     @Column(name = "isbn", length = 20)
     private String isbn;
 
@@ -31,5 +34,5 @@ public class Book {
     private String genre;
 
     @Column(name = "is_available", nullable = false, length = 1)
-    private char isAvailable;
+    private String is_Available;
 }

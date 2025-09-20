@@ -5,5 +5,6 @@ import java.util.List;
 
 public interface BookService {
     List<BookDto> findAllBook();
+    BookDto findBook(String isbn);
     
 }

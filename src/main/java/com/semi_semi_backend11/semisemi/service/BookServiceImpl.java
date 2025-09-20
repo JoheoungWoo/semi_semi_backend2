@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class BookServiceImpl implements BookService{
@@ -17,8 +19,8 @@ public class BookServiceImpl implements BookService{
                     .isbn(book.getIsbn())
                     .title(book.getTitle())
                     .genre(book.getGenre())
-                    .is_available(book.getIs_available())
-                    .publication_year(book.getPublication_year())
+                    .is_available(book.getIs_Available())
+                    .publication_year(book.getPublicationYear())
                     .author(book.getAuthor())
                     .content(book.getContent())
                     .publisher(book.getPublisher())
@@ -29,8 +31,8 @@ public class BookServiceImpl implements BookService{
                     .isbn(dto.getIsbn())
                     .title(dto.getTitle())
                     .genre(dto.getGenre())
-                    .is_available(dto.getIs_available())
-                    .publication_year(dto.getPublication_year())
+                    .is_Available(dto.getIs_available())
+                    .publicationYear(dto.getPublication_year())
                     .author(dto.getAuthor())
                     .content(dto.getContent())
                     .publisher(dto.getPublisher())
@@ -40,5 +42,11 @@ public class BookServiceImpl implements BookService{
     @Override
     public List<BookDto> findAllBook() {
         return repository.findAll().stream().map(i->toDto(i)).toList();
+    }
+
+    @Override
+    public Optional<BookDto> findBook(String isbn) {
+        Book book=repository.findById(isbn);
+        return toDto(book);
     }
 }
