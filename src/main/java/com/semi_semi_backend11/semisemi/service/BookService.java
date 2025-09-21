@@ -2,9 +2,9 @@ package com.semi_semi_backend11.semisemi.service;
 
 import com.semi_semi_backend11.semisemi.dto.BookDto;
 import java.util.List;
+import java.util.Optional;
 
 public interface BookService {
     List<BookDto> findAllBook();
-    BookDto findBook(String isbn);
-    
+    Optional<BookDto> findBook(String isbn);
 }

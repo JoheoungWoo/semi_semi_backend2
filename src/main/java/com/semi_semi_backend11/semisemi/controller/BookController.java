@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @Slf4j
@@ -24,8 +25,15 @@ public class BookController {
     public ResponseEntity<List<BookDto>> bookDTOList(){
         return ResponseEntity.ok(service.findAllBook());
     }
-    @GetMapping("/{isbn}")
+
+    @GetMapping("/book/{isbn}")
     public ResponseEntity<BookDto> bookDetail(@PathVariable("isbn") String isbn){
-        return ResponseEntity.ok(service.findBook(isbn));
+        Optional<BookDto> optionalDto = service.findBook(isbn);
+        if(optionalDto.isPresent()){
+            return ResponseEntity.ok(optionalDto.get());
+        }else {
+            return ResponseEntity.notFound().build();
+        }
+
     }
 }

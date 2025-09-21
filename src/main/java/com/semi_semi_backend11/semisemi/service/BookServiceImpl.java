@@ -46,7 +46,6 @@ public class BookServiceImpl implements BookService{
 
     @Override
     public Optional<BookDto> findBook(String isbn) {
-        Book book=repository.findById(isbn);
-        return toDto(book);
+        return repository.findById(isbn).map(this::toDto);
     }
 }
