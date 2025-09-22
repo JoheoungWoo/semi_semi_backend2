@@ -1,19 +1,21 @@
 package com.semi_semi_backend11.semisemi.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
 
-@NoArgsConstructor
-@Getter
 @Entity
+@Getter
+@Setter
+@Table(name = "Member")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 
 public class Member {
     @Id
+    @Column(name = "member_id")
     private Long member_id;
     private String name;
     private LocalDate birth_date;

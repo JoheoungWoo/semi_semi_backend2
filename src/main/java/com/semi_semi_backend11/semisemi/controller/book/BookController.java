@@ -1,7 +1,7 @@
-package com.semi_semi_backend11.semisemi.controller;
+package com.semi_semi_backend11.semisemi.controller.book;
 
 import com.semi_semi_backend11.semisemi.dto.BookDto;
-import com.semi_semi_backend11.semisemi.service.BookService;
+import com.semi_semi_backend11.semisemi.service.book.BookService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
