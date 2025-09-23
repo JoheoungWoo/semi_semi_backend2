@@ -1,24 +1,24 @@
 package com.semi_semi_backend11.semisemi;
 
-import com.semi_semi_backend11.semisemi.service.book.BookService;
+import com.semi_semi_backend11.semisemi.service.photogallery.PhotogalleryService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class BookTests {
+public class GalleryTests {
     @Autowired
-    BookService service;
+    PhotogalleryService service;
 
     @Test
     public void findAllTest() {
-        service.findAllBook()
-                .forEach(book -> System.out.println(book));
+        service.findAllGallery()
+                .forEach(photoGallery -> System.out.println(photoGallery));
     }
 
     @Test
     public void findByIdTest() {
-        var result = service.findBook("978-89-329-1922-3");
+        var result = service.findGallery(1);
         if(result.isEmpty()){
             System.out.println("실패");
             return;
@@ -26,4 +26,5 @@ public class BookTests {
 
         System.out.println(result.get());
     }
+
 }

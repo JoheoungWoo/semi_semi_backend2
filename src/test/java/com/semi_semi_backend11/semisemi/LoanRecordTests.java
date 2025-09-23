@@ -1,24 +1,25 @@
 package com.semi_semi_backend11.semisemi;
 
-import com.semi_semi_backend11.semisemi.service.book.BookService;
+
+import com.semi_semi_backend11.semisemi.service.loanrecord.LoanrecordService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class BookTests {
+public class LoanRecordTests {
     @Autowired
-    BookService service;
+    LoanrecordService service;
 
     @Test
     public void findAllTest() {
-        service.findAllBook()
-                .forEach(book -> System.out.println(book));
+        service.findAllLoanRecord()
+                .forEach(record -> System.out.println(record));
     }
-
+    
     @Test
     public void findByIdTest() {
-        var result = service.findBook("978-89-329-1922-3");
+        var result = service.findLoanRecord(1);
         if(result.isEmpty()){
             System.out.println("실패");
             return;
