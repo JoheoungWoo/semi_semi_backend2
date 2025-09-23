@@ -1,8 +1,7 @@
 package com.semi_semi_backend11.semisemi.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -10,6 +9,9 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Table(name = "PHOTO_GALLERY")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class PhotoGallery {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

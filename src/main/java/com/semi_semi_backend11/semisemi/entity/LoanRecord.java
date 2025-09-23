@@ -1,10 +1,7 @@
 package com.semi_semi_backend11.semisemi.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -14,6 +11,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Entity
 @Table(name = "LOAN_RECORDS")
+@Builder
 public class LoanRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
