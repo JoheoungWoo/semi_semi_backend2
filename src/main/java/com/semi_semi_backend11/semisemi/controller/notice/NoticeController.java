@@ -32,13 +32,12 @@ public class NoticeController {
     }
 
     @GetMapping("/notice/info/{id}")
-    public ResponseEntity<NoticeDto> getNoticeInfo(@PathVariable("id") Integer id){
-        Optional<NoticeDto> dto= service.findNotice(id);
-        if(dto.isPresent()){
+    public ResponseEntity<NoticeDto> getNoticeInfo(@PathVariable("id") Integer id) {
+        Optional<NoticeDto> dto = service.findNotice(id);
+        if (dto.isPresent()) {
             return ResponseEntity.ok(dto.get());
-        }else{
+        } else {
             return ResponseEntity.notFound().build();
         }
     }
-
 }
