@@ -18,8 +18,10 @@ public class Answer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "answer_id")
     private Integer answerId;
-    @Column(name = "question_id")
-    private Integer questionId;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "question_id")
+    private Question question;
+
     @Column(name = "member_id")
     private Integer memberId;
     private String content;

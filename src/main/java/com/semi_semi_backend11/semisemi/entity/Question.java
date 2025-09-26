@@ -24,4 +24,6 @@ public class Question {
     private String content;
     @Column(name = "created_at")
     private LocalDateTime createdAt;
+    @OneToOne(mappedBy = "question", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Answer answer;
 }
