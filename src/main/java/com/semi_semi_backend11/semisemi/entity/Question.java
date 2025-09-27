@@ -26,4 +26,8 @@ public class Question {
     private LocalDateTime createdAt;
     @OneToOne(mappedBy = "question", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Answer answer;
+
+    @ManyToOne(fetch = FetchType.LAZY) // 지연 로딩 설정
+    @JoinColumn(name = "member_id", insertable = false, updatable = false) // 기존 member_id 컬럼을 사용하고 FK로만 활용
+    private Member member;
 }
