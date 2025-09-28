@@ -7,9 +7,7 @@ import org.springframework.stereotype.Service;
 @SpringBootApplication
 
 public class SemisemiApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(SemisemiApplication.class, args);
 	}
-
 }

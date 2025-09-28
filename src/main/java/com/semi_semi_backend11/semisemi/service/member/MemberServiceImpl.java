@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 @Service
 @RequiredArgsConstructor
@@ -48,4 +49,11 @@ public class MemberServiceImpl implements MemberService{
     public void updateMemberInfo(Member member) {
 
     }
+
+    @Override
+    public Optional<List<MemberDto>> getAllMember() {
+        return Optional.of(repository.findAll().stream().map(this::toDto).toList());
+    }
+
+
 }

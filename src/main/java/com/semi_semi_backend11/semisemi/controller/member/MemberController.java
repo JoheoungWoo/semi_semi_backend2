@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -27,5 +28,11 @@ public class MemberController {
             return ResponseEntity.notFound().build();
         }
 
+    }
+    @GetMapping("/members")
+    public ResponseEntity<List<MemberDto>> getMemberList(){
+        Optional<List<MemberDto>> list = service.getAllMember();
+        if(list.isPresent()) return ResponseEntity.ok(list.get());
+        else return ResponseEntity.notFound().build();
     }
 }
