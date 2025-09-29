@@ -41,8 +41,8 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public Optional<MemberDto> getMemberInfo(Long id) {
-        return repository.findById(id).map(i->toDto(i));
+    public Optional<MemberDto> getMemberInfo(String email) {
+        return repository.findByEmail(email).map(i->toDto(i));
     }
 
     @Override
@@ -53,6 +53,14 @@ public class MemberServiceImpl implements MemberService{
     @Override
     public Optional<List<MemberDto>> getAllMember() {
         return Optional.of(repository.findAll().stream().map(this::toDto).toList());
+    }
+
+    @Override
+    public boolean login(String email, String name) {
+        Optional<Member> member=repository.findByEmail(email);
+        if(member.isEmpty()) return false;
+        if(member.get().getName().equals(name)) return true;
+        else return false;
     }
 
 
