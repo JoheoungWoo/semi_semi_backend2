@@ -48,51 +48,44 @@ public class PhotogalleryController {
         }
     }
 
-    // 레거시 갤러리 코드
-//    @PostMapping("/upload")
-//    public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file) {
-//        // 1. 파일이 비어있는지 확인
-//        String uploadDir = "images/gallery/";
-//        if (file.isEmpty()) {
-//            return ResponseEntity.badRequest().body("업로드할 파일을 선택해주세요.");
-//        }
-//
-//        try {
-//            // 2. 고유한 파일명 생성
-//            String originalFilename = file.getOriginalFilename();
-//            String extension = "";
-//            if (originalFilename != null && originalFilename.contains(".")) {
-//                extension = originalFilename.substring(originalFilename.lastIndexOf("."));
-//            }
-//            String uniqueFilename = UUID.randomUUID().toString() + extension;
-//
-//            // 3. 파일 저장
-//            Path filePath = Paths.get(uploadDir + uniqueFilename);
-//            Files.createDirectories(filePath.getParent()); // 폴더가 없으면 생성
-//            Files.write(filePath, file.getBytes());
-//
-//            // 4. 성공 시 웹에서 접근 가능한 URL 반환
-//            log.info("파일이 성공적으로 저장되었습니다: {}", uniqueFilename);
-//            return ResponseEntity.ok("/images/" + uniqueFilename);
-//
-//        } catch (IOException e) {
-//            log.error("파일 업로드 실패", e);
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("파일 업로드에 실패했습니다.");
-//        }
-//    }
-
     @PostMapping("/photogallery/upload")
-    public ResponseEntity<String> uploadImage(@ModelAttribute("file") MultipartFile file, @ModelAttribute("gallery") PhotoGalleryDto gallery) {
-        GalleryResultEnum result = service.uploadGallery(file,gallery);
+    public ResponseEntity<?> uploadGallery(
+            @RequestParam("writer") String writer,
+            @RequestParam("title") String title,
+            @RequestParam("content") String content,
+            @RequestParam("photoUrl") String photoUrl,
+            @RequestParam("photo") MultipartFile photo
+    ) {
 
-        if(result == GalleryResultEnum.Success)
+//        System.out.println(writer);
+//        System.out.println(title);
+//        System.out.println(content);
+//        System.out.println(photoUrl);
+//        System.out.println(photo);
+
+        // DTO생성
+        PhotoGalleryDto dto = new PhotoGalleryDto();
+        dto.setWriter(writer);
+        dto.setTitle(title);
+        dto.setContent(content);
+        dto.setPhotoUrl(photoUrl);
+        dto.setPhoto(photo);
+
+        // 실행
+        GalleryResultEnum result = service.uploadGallery(photo, dto);
+
+        // 결과 검증
+        if (result == GalleryResultEnum.Success)
             return ResponseEntity.ok("이미지 업로드 성공");
-        else if(result == GalleryResultEnum.FileIsEmpty)
+        else if (result == GalleryResultEnum.FileIsEmpty)
             return ResponseEntity.badRequest().body("올바른 이미지를 선택해주세요.");
-        else if(result == GalleryResultEnum.FileTooLarge)
+        else if (result == GalleryResultEnum.FileTooLarge)
             return ResponseEntity.badRequest().body("파일의 크기가 너무 큽니다.");
         else
             return ResponseEntity.badRequest().body("이미지 업로드 실패");
     }
-
 }
+
+
+
+
