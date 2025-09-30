@@ -52,7 +52,7 @@ public class PhotogalleryServiceImpl implements PhotogalleryService {
     }
 
     @Override
-    public GalleryResultEnum uploadGallery(MultipartFile file, PhotoGalleryDto gallery) {
+    public GalleryResultEnum uploadGallery(MultipartFile file,PhotoGalleryDto gallery) {
         // 1. 파일이 비어있는지 확인
         String uploadDir = "images/gallery/";
         if (file.isEmpty()) {
@@ -63,6 +63,10 @@ public class PhotogalleryServiceImpl implements PhotogalleryService {
         if(file.getSize() > 5 * 1024 * 1024) {
             return GalleryResultEnum.FileTooLarge;
         }
+
+        System.out.println(file);
+        System.out.println(gallery);
+
 
         try {
             // 2. 고유한 파일명 세팅을 위한 세팅
@@ -83,7 +87,7 @@ public class PhotogalleryServiceImpl implements PhotogalleryService {
             Files.write(filePath, file.getBytes());
 
             // 4. 성공 시 DB에 저장할 url 생성
-            String imgUrl = uploadDir + "/" + filename;
+            String imgUrl = "/" + uploadDir + filename;
             gallery.setPhotoUrl(imgUrl);
             repository.save(toEntity(gallery));
             return GalleryResultEnum.Success;

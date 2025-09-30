@@ -11,5 +11,5 @@ import java.util.Optional;
 public interface PhotogalleryService {
     List<PhotoGalleryDto> findAllGallery();
     Optional<PhotoGalleryDto> findGallery(Integer galleryId);
-    GalleryResultEnum uploadGallery(MultipartFile file, PhotoGalleryDto gallery);
+    GalleryResultEnum uploadGallery(MultipartFile file,PhotoGalleryDto gallery);
 }
