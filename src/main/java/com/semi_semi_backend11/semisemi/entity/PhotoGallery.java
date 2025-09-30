@@ -2,6 +2,7 @@ package com.semi_semi_backend11.semisemi.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 
@@ -24,4 +25,7 @@ public class PhotoGallery {
     private String photoUrl;
     @Column(name = "created_at")
     private LocalDateTime createdAt;
+
+    @Transient // DB에 저장되지 않음
+    private MultipartFile photo;
 }
