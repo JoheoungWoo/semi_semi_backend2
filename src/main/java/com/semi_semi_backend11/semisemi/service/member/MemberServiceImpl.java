@@ -47,7 +47,17 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public void updateMemberInfo(Member member) {
-
+        Member updatedMember = Member.builder()
+                .address(member.getAddress())
+                .member_id(member.getMember_id())
+                .grade(member.getGrade())
+                .phone_number(member.getPhone_number())
+                .join_date(member.getJoin_date())
+                .birth_date(member.getBirth_date())
+                .name(member.getName())
+                .email(member.getEmail())
+                .build();
+        repository.save(updatedMember);
     }
 
     @Override
